@@ -24,7 +24,7 @@ public class StartPage {
 
     @Step("Открыть страницу")
     public StartPage openPage() {
-        Configuration.browser = "opera";
+//        Configuration.browser = "opera";
         open("");
         return this;
     }
