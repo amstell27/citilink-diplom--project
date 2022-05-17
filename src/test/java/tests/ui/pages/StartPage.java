@@ -19,7 +19,7 @@ public class StartPage {
         cityHeader = $("[class='MainHeader__city-block']").$("[class='MainHeader__city']"),
         searchCategory = $("[class='MainHeader__search']").$(by("name", "text")),
         popularCategory = $("[class='dy--PopularCategoriesBox__title']").$(by("data-owox-name", "Популярные категории")),
-        catalog =  $("[class='CatalogMenu__left js--CatalogMenu__left']"),
+        catalog =  $("[data-label='Каталог товаров']"),
         hits = $("[data-dy-widget-id='123186']");
 
     @Step("Открыть страницу")
@@ -66,7 +66,7 @@ public class StartPage {
     @Step("Проверка 'Каталога товаров'")
     public StartPage checkCatalog(String categoryOfCatalog) {
         catalog.click();
-        $(by("data-title", categoryOfCatalog)).hover();
+        $("[class='CatalogMenu__left js--CatalogMenu__left']").$(by("data-title", categoryOfCatalog)).hover();
         $("[class='CatalogMenu__right js--CatalogMenu__right']").shouldHave(text(categoryOfCatalog));
         return this;
     }
