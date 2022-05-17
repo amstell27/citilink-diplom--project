@@ -2,6 +2,7 @@ package tests.ui;
 
 import com.codeborne.selenide.Configuration;
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -15,6 +16,7 @@ public class CitilinkUITests extends TestBase{
     StartPage startPage = new StartPage();
     String category = "Смартфоны";
 
+    @Disabled
     @DisplayName("Проверка корректного определения региона")
     @ValueSource(strings = {"Казань", "Санкт-Петербург", "Саров"})
     @ParameterizedTest(name = "\"{0}\"")
@@ -25,6 +27,7 @@ public class CitilinkUITests extends TestBase{
                 .checkRegion(region);
     }
 
+    @Disabled
     @DisplayName("Проверка отображения данных, введенных в поиске")
     @ValueSource(strings = {"Процессоры", "Модули памяти"})
     @ParameterizedTest(name = "\"{0}\"")
@@ -34,11 +37,14 @@ public class CitilinkUITests extends TestBase{
     }
 
     @Test
+    @Disabled
     @DisplayName("Проверка раздела <Популярные категории>")
     void checkPopularCategory() {
         startPage.openPage()
                 .checkPopularCategory(category);
     }
+
+    @Disabled
     @DisplayName("Проверка отображения введенных сведений в разделе <Каталог товаров> ")
     @ValueSource(strings = {"Умный дом и системы безопасности", "Автотовары", "Строительство и ремонт"})
     @ParameterizedTest(name = "\"{0}\"")
@@ -48,6 +54,7 @@ public class CitilinkUITests extends TestBase{
     }
 
     @Test
+    @Disabled
     @DisplayName("Проверка раздела <Хиты>")
     void checkChapterOfHits() {
         startPage.openPage()

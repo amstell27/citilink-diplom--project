@@ -1,6 +1,7 @@
 package tests.api;
 
 
+import org.hamcrest.Matchers;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import tests.ui.TestBase;
@@ -15,7 +16,7 @@ import static org.hamcrest.Matchers.is;
 public class CitilinkAPITests{
 
     @Test
-    @DisplayName("Проверка добавления услуг к товару в корзину")
+    @DisplayName("Check to add the service in the basket")
     void getServiceBusketTest() {
         String data = "productId=1617484&serviceId=J5437&serviceType=cardifService&serviceQty=1";
         given()
@@ -34,7 +35,7 @@ public class CitilinkAPITests{
     }
 
     @Test
-    @DisplayName("Проверка добавления товара в корзину")
+    @DisplayName("Check to add the product in the basket")
     void getProductBusketTest() {
         String amount = "1",
                 parent_id = "420251";
@@ -54,7 +55,7 @@ public class CitilinkAPITests{
     }
 
     @Test
-    @DisplayName("Проверка добавления товара в корзину с учетом cookie")
+    @DisplayName("Check to add the product in the basket with cookie")
     void addProductBusketTest() {
         String amount = "5",
                 parent_id = "420251";
@@ -75,7 +76,7 @@ public class CitilinkAPITests{
     }
 
     @Test
-    @DisplayName("Проверка на добавление максимального количества товара")
+    @DisplayName("Check to add the product in the basket over max limit")
     void limitProductBusketTest() {
         String amount = "105",
                 parent_id = "420251";
@@ -89,7 +90,7 @@ public class CitilinkAPITests{
                 .get("https://www.citilink.ru/basket/add/product/" + parent_id + "/?amount=" + amount + "&parent_id=" + parent_id)
                 .then()
                 .statusCode(200)
-                .body("storage.cart.list." + parent_id + ".amount", is(92));
+                .body("storage.cart.list." + parent_id + ".amount", Matchers.not(105));
 
     }
 
