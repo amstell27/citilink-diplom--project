@@ -3,15 +3,15 @@ package tests.api;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import tests.ui.TestBase;
 
 
-import static io.qameta.allure.Allure.step;
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.greaterThan;
 import static org.hamcrest.Matchers.is;
 
 
-public class CitilinkAPITests {
+public class CitilinkAPITests extends TestBase {
 
     @Test
     @DisplayName("Проверка добавления услуг к товару в корзину")
