@@ -19,7 +19,7 @@ public class StartPage {
         cityHeader = $("[class='MainHeader__city-block']").$("[class='MainHeader__city']"),
         searchCategory = $("[class='MainHeader__search']").$(by("name", "text")),
         popularCategory = $("[class='dy--PopularCategoriesBox__title']").$(by("data-owox-name", "Популярные категории")),
-        catalog =  $("[data-label='Каталог товаров']"),
+        catalog =  $("[class='CatalogMenu__left js--CatalogMenu__left']"),
         hits = $("[data-dy-widget-id='123186']");
 
     @Step("Открыть страницу")
