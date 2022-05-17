@@ -2,6 +2,7 @@ package tests.api;
 
 
 import org.hamcrest.Matchers;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import tests.ui.TestBase;
@@ -16,6 +17,7 @@ import static org.hamcrest.Matchers.is;
 public class CitilinkAPITests{
 
     @Test
+    @Disabled
     @DisplayName("Check to add the service in the basket")
     void getServiceBusketTest() {
         String data = "productId=1617484&serviceId=J5437&serviceType=cardifService&serviceQty=1";
@@ -55,6 +57,7 @@ public class CitilinkAPITests{
     }
 
     @Test
+    @Disabled
     @DisplayName("Check to add the product in the basket with cookie")
     void addProductBusketTest() {
         String amount = "5",
@@ -76,6 +79,7 @@ public class CitilinkAPITests{
     }
 
     @Test
+    @Disabled
     @DisplayName("Check to add the product in the basket over max limit")
     void limitProductBusketTest() {
         String amount = "105",
