@@ -46,12 +46,13 @@ public class CitilinkAPITests {
                 token = "1652783436497";
 
         given()
-                .header("user-agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/100.0.4896.127 Safari/537.36 OPR/86.0.4363.59")
+                .header("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/100.0.4896.127 Safari/537.36 OPR/86.0.4363.59")
                 .header("x-requested-with", "XMLHttpRequest")
                 .header("Host", "www.citilink.ru")
                 .header("authority", "www.citilink.ru")
                 .header("accept", "*/*")
                 .header("accept-language", "ru-RU,ru;q=0.9,en-US;q=0.8,en;q=0.7")
+                .header("Accept-Encoding", "gzip, deflate, br")
                 .header("referer", "https://www.citilink.ru/product/ssd-nakopitel-kingston-a400-sa400s37-240g-240gb-2-5-sata-iii-420251/")
                 .header("sec-ch-ua", "\" Not A;Brand\";v=\"99\", \"Chromium\";v=\"100\", \"Opera\";v=\"86\"")
                 .header("sec-ch-ua-platform", "\"Windows\"")
