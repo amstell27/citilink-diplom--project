@@ -47,7 +47,9 @@ public class CitilinkAPITests {
 
         given()
                 .header("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/100.0.4896.127 Safari/537.36 OPR/86.0.4363.59")
-//                .header("x-requested-with", "XMLHttpRequest")
+                .header("x-requested-with", "XMLHttpRequest")
+                .header("Accept", "*/*")
+                .log().headers()
                 .log().uri()
                 .log().body()
                 .when()
@@ -55,6 +57,7 @@ public class CitilinkAPITests {
                 .then()
                 .log().status()
                 .log().body()
+                .log().headers()
                 .statusCode(200)
                 .body("storage.cart.list." + parent_id + ".amount", is(1));
 
