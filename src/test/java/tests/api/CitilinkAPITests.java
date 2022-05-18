@@ -8,6 +8,7 @@ import org.junit.jupiter.api.Test;
 import tests.ui.TestBase;
 
 
+import static io.qameta.allure.Allure.step;
 import static io.restassured.RestAssured.given;
 import static io.restassured.http.ContentType.JSON;
 import static org.hamcrest.Matchers.greaterThan;
@@ -97,6 +98,24 @@ public class CitilinkAPITests{
                 .statusCode(200)
                 .body("storage.cart.list." + parent_id + ".amount", Matchers.not(105));
 
+    }
+
+    @Test
+    @DisplayName("Добавление товара в корзину")
+    void testAddToCart() {
+        step("Добавить товар в корзину", () -> {
+            given()
+//                    .filter(CustomAllureListener.withCustomTemplates())
+                    .contentType("application/json; charset=UTF-8")
+                    .body("[{\"id\":146265158,\"quantity\":1}]")
+                    .when()
+                    .post("https://www.ozon.ru/api/composer-api.bx/_action/addToCart")
+                    .then()
+                    .log().all()
+                    .statusCode(200)
+                    .body("success", is(true))
+                    .body("cart.cartItems.qty[0]", is(1));
+        });
     }
 
 
