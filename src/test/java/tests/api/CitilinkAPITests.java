@@ -53,7 +53,7 @@ public class CitilinkAPITests {
                 .log().uri()
                 .log().body()
                 .when()
-                .get("https://www.citilink.ru/basket/add/product/" + parent_id + "/?amount=" + amount + "&parent_id=" + parent_id + "&_=" + token)
+                .get("https://www.citilink.ru/basket/add/product/" + parent_id + "/?amount=" + amount + "&parent_id=" + parent_id + "&_=" + token + " HTTP 1.1")
                 .then()
                 .log().status()
                 .log().body()
