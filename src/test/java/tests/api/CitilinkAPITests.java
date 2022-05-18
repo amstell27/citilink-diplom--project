@@ -47,10 +47,8 @@ public class CitilinkAPITests {
 
         given()
                 .header("user-agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/100.0.4896.127 Safari/537.36 OPR/86.0.4363.59")
-                .header("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/100.0.4896.127 Safari/537.36 OPR/86.0.4363.59")
                 .header("x-requested-with", "XMLHttpRequest")
-                .header("Accept", "*/*")
-                .header("sec-ch-ua-platform", "Windows")
+                .header("Host", "www.citilink.ru")
                 .log().headers()
                 .log().uri()
                 .log().body()
