@@ -15,7 +15,7 @@ import static org.hamcrest.Matchers.greaterThan;
 import static org.hamcrest.Matchers.is;
 
 
-public class CitilinkAPITests{
+public class CitilinkAPITests {
 
     @Test
     @Disabled
@@ -33,7 +33,8 @@ public class CitilinkAPITests{
                 .then()
                 .log().body()
                 .statusCode(200)
-                .body("storage.cart.list.1617484.amount", is(1));;
+                .body("storage.cart.list.1617484.amount", is(1));
+        ;
 
     }
 
@@ -42,10 +43,11 @@ public class CitilinkAPITests{
     void getProductBusketTest() {
         String amount = "1",
                 parent_id = "420251",
-                        token = "1652783436497";
+                token = "1652783436497";
 
         given()
-
+                .header("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/100.0.4896.127 Safari/537.36 OPR/86.0.4363.59")
+//                .header("x-requested-with", "XMLHttpRequest")
                 .log().uri()
                 .log().body()
                 .when()
@@ -98,24 +100,6 @@ public class CitilinkAPITests{
                 .statusCode(200)
                 .body("storage.cart.list." + parent_id + ".amount", Matchers.not(105));
 
-    }
-
-    @Test
-    @DisplayName("Добавление товара в корзину")
-    void testAddToCart() {
-        step("Добавить товар в корзину", () -> {
-            given()
-//                    .filter(CustomAllureListener.withCustomTemplates())
-                    .contentType("application/json; charset=UTF-8")
-                    .body("[{\"id\":146265158,\"quantity\":1}]")
-                    .when()
-                    .post("https://www.ozon.ru/api/composer-api.bx/_action/addToCart")
-                    .then()
-                    .log().all()
-                    .statusCode(200)
-                    .body("success", is(true))
-                    .body("cart.cartItems.qty[0]", is(1));
-        });
     }
 
 
