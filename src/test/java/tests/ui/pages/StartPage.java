@@ -18,24 +18,20 @@ public class StartPage {
     private final SelenideElement
         cityHeader = $("[class='MainHeader__city-block']").$("[class='MainHeader__city']"),
         searchCategory = $("[class='MainHeader__search']").$(by("name", "text")),
-        popularCategory = $("[class='dy--PopularCategoriesBox__title']").$(by("data-owox-name", "Популярные категории")),
+        popularCategory = $("[class='PopularCategoriesBox__header']"),
         catalog =  $("[data-label='Каталог товаров']"),
         hits = $("[data-dy-widget-id='123186']");
 
-    @Step("Открыть страницу")
     public StartPage openPage() {
-//        Configuration.browser = "opera";
         open("");
         return this;
     }
 
-    @Step("Обновить страницу")
     public StartPage refreshPage() {
         refresh();
         return this;
     }
 
-    @Step("Выбор региона")
     public StartPage setRegion(String region) {
         cityHeader.click();
         $(by("placeholder","Введите название города")).setValue(region);
@@ -43,27 +39,23 @@ public class StartPage {
         return this;
     }
 
-    @Step("Проверка выбранного региона")
     public StartPage checkRegion(String region) {
         cityHeader.shouldHave(text(region));
         return this;
     }
 
-    @Step("Проверка поиска")
     public StartPage checkSearch(String value) {
         searchCategory.setValue(value).pressEnter();
         $("[class='Subcategory__title-container']").shouldHave(text(value));
         return this;
     }
 
-    @Step("Проверка раздела 'Популярные категории'")
     public StartPage checkPopularCategory(String category) {
         popularCategory.click();
         $("[class='dy-container-1048403 dy--PopularCategoriesBox__container']").shouldHave(text(category));
         return this;
     }
 
-    @Step("Проверка 'Каталога товаров'")
     public StartPage checkCatalog(String categoryOfCatalog) {
         catalog.click();
         $("[class='CatalogMenu__left js--CatalogMenu__left']").$(by("data-title", categoryOfCatalog)).hover();
@@ -71,7 +63,6 @@ public class StartPage {
         return this;
     }
 
-    @Step("Проверка раздела Хиты")
     public StartPage checkCatalogHits() {
         hits.scrollTo();
         $("[class= 'SectionHead__link SectionHead__link_desktop']").click();

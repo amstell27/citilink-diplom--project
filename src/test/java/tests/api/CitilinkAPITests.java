@@ -2,15 +2,12 @@ package tests.api;
 
 
 import org.hamcrest.Matchers;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import tests.ui.TestBase;
 
 
 import static io.qameta.allure.Allure.step;
 import static io.restassured.RestAssured.given;
-import static io.restassured.http.ContentType.JSON;
 import static org.hamcrest.Matchers.greaterThan;
 import static org.hamcrest.Matchers.is;
 
@@ -18,7 +15,6 @@ import static org.hamcrest.Matchers.is;
 public class CitilinkAPITests {
 
     @Test
-    @Disabled
     @DisplayName("Check to add the service in the basket")
     void getServiceBusketTest() {
         String data = "productId=1617484&serviceId=J5437&serviceType=cardifService&serviceQty=1";
@@ -34,7 +30,6 @@ public class CitilinkAPITests {
                 .log().body()
                 .statusCode(200)
                 .body("storage.cart.list.1617484.amount", is(1));
-        ;
 
     }
 
@@ -46,20 +41,6 @@ public class CitilinkAPITests {
                 token = "1652783436497";
 
         given()
-                .header("User-Agent", "PostmanRuntime/7.29.0")
-                .header("x-requested-with", "XMLHttpRequest")
-                .header("Host", "www.citilink.ru")
-                .header("authority", "www.citilink.ru")
-                .header("accept", "*/*")
-                .header("accept-language", "ru-RU,ru;q=0.9")
-                .header("Accept-Encoding", "gzip, deflate, br")
-                .header("referer", "https://www.citilink.ru/product/ssd-nakopitel-kingston-a400-sa400s37-240g-240gb-2-5-sata-iii-420251/")
-                .header("sec-ch-ua", "\" Not A;Brand\";v=\"99\", \"Chromium\";v=\"101\", \"Google Chrome\";v=\"101\"")
-                .header("sec-ch-ua-platform", "\"Windows\"")
-                .header("sec-fetch-mode", "cors")
-                .header("sec-fetch-dest", "empty")
-                .header("sec-fetch-site", "same-origin")
-                .header("sec-ch-ua-mobile", "?0")
                 .log().headers()
                 .log().uri()
                 .log().body()
@@ -75,14 +56,12 @@ public class CitilinkAPITests {
     }
 
     @Test
-    @Disabled
     @DisplayName("Check to add the product in the basket with cookie")
     void addProductBusketTest() {
         String amount = "5",
                 parent_id = "420251";
 
         given()
-
                 .cookie("_tuid=4501b28718a8c0feb106d36bbbca3d3ac0137fc1;")
                 .log().uri()
                 .log().body()
@@ -97,15 +76,12 @@ public class CitilinkAPITests {
     }
 
     @Test
-    @Disabled
     @DisplayName("Check to add the product in the basket over max limit")
     void limitProductBusketTest() {
         String amount = "105",
                 parent_id = "420251";
 
         given()
-
-                .cookie("_tuid=4501b28718a8c0feb106d36bbbca3d3ac0137fc1;")
                 .log().uri()
                 .log().body()
                 .when()
