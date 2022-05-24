@@ -26,7 +26,6 @@ public class EmulatorMobileDriver implements WebDriverProvider {
         options.merge(capabilities);
         options.setAutomationName(AutomationName.ANDROID_UIAUTOMATOR2);
         options.setPlatformName("Android");
-//        options.setDeviceName("RFCR90ZMNQP");
         options.setDeviceName("Pixel_4_API_30");
         options.setPlatformVersion("11.0");
         options.setApp(app.getAbsolutePath());
