@@ -15,7 +15,7 @@ public class StartPage {
     private final SelenideElement
         cityHeader = $("[class='MainHeader__city-block']").$("[class='MainHeader__city']"),
         searchCategory = $("[class='MainHeader__search']").$(by("name", "text")),
-        popularCategory = $("[class='PopularCategoriesBox__header']"),
+        popularCategory = $("[class='dy--PopularCategoriesBox__header']"),
         catalog =  $("[data-label='Каталог товаров']"),
         hits = $("[data-dy-widget-id='123186']");
 

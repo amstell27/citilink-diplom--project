@@ -3,6 +3,7 @@ package tests.mobile;
 import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.Selenide;
 
+import config.WebDriverConfig;
 import drivers.EmulatorMobileDriver;
 import helpers.Attach;
 import io.qameta.allure.selenide.AllureSelenide;

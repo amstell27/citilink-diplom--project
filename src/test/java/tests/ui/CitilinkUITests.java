@@ -1,6 +1,8 @@
 package tests.ui;
 
 import org.junit.jupiter.api.DisplayName;
+
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
@@ -8,7 +10,7 @@ import tests.ui.pages.StartPage;
 
 import static io.qameta.allure.Allure.step;
 
-
+@Tag("UI")
 public class CitilinkUITests extends TestBase {
 
     StartPage startPage = new StartPage();

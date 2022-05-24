@@ -2,74 +2,77 @@ package tests.mobile;
 
 import com.codeborne.selenide.Selenide;
 import io.appium.java_client.AppiumBy;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
+import tests.mobile.pages.MobilePages;
 
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.*;
 import static io.qameta.allure.Allure.step;
 
+@Tag("Mobile")
 public class AndroidSelenideTests extends TestBaseMobile {
-    @Test
-    void setAndCheckRegion() {
+
+    MobilePages mobilePage = new MobilePages();
+
+    @DisplayName("Проверка выбора региона")
+    @ValueSource(strings = {"Казань", "Санкт-Петербург", "Саров"})
+    @ParameterizedTest(name = "\"{0}\"")
+    void setAndCheckRegion(String region) {
+
         sleep(200);
         step("Skip onboarding", Selenide::back);
         step("Set the city", () -> {
-            $(AppiumBy.id("ru.citilink:id/profile_graph")).click();
-            $(AppiumBy.id("ru.citilink:id/contentProfileCityRow")).click();
-            $(AppiumBy.id("ru.citilink:id/searchMenu")).click();
-            $(AppiumBy.id("ru.citilink:id/search_src_text")).setValue("Казань");
-            $(AppiumBy.id("ru.citilink:id/textViewCityName")).click();
-
+            mobilePage.setRegion(region);
         });
-
-        step("Verify content found", () -> {
-            $(AppiumBy.id("ru.citilink:id/textViewProfileCityValue")).shouldHave(text("Казань"));
+        step("Verify choice region", () -> {
+            mobilePage.checkRegion(region);
         });
     }
 
-    @Test
-    void searchTest() {
-        sleep(2000);
+    @DisplayName("Проверка выбора региона")
+    @ValueSource(strings = {"Модули памяти", "Процессоры"})
+    @ParameterizedTest(name = "\"{0}\"")
+    void searchTest(String value) {
+        sleep(200);
         step("Skip onboarding", Selenide::back);
         step("Set the search", () -> {
-            $(AppiumBy.id("ru.citilink:id/buttonSearch")).click();
-            $(AppiumBy.id("ru.citilink:id/editTextSearchToolbar")).setValue("Модули памяти");
-            $(AppiumBy.id("ru.citilink:id/recyclerViewSuggestedCategories")).click();
-
+            mobilePage.inputNameSearch(value);
+            mobilePage.clickFoundCategory();
         });
-
         step("Verify content found", () -> {
-            $(AppiumBy.id("ru.citilink:id/textViewProductsListTitle")).shouldHave(text("Модули памяти"));
+            mobilePage.checkSearch(value);
         });
     }
 
     @Test
     void catalogTest() {
-        sleep(2000);
+        sleep(200);
         step("Skip onboarding", Selenide::back);
         step("Set the Catalog", () -> {
-            $(AppiumBy.accessibilityId("Каталог")).click();
-            $(AppiumBy.id("ru.citilink:id/recyclerViewMainCategories"))
+            $(AppiumBy.accessibilityId("Каталог")).click();   //open catalog
+            $(AppiumBy.id("ru.citilink:id/recyclerViewMainCategories"))  //click for category
                     .$(AppiumBy.id("ru.citilink:id/textViewMainCategoryTitle"))
                     .shouldHave(text("Смартфоны и гаджеты")).click();
         });
 
         step("Verify content found", () -> {
-            $(AppiumBy.id("ru.citilink:id/textViewCustomTitle")).shouldHave(text("Смартфоны и гаджеты"));
+            $(AppiumBy.id("ru.citilink:id/textViewCustomTitle")).shouldHave(text("Смартфоны и гаджеты"));  //check to open the page of the catalog
         });
     }
 
     @Test
     void addToBasketTest() {
-        sleep(2000);
+        sleep(200);
         step("Skip onboarding", Selenide::back);
         step("add product to basket", () -> {
-            $(AppiumBy.id("ru.citilink:id/buttonSearch")).click();
-            $(AppiumBy.id("ru.citilink:id/editTextSearchToolbar")).setValue("Смартфон Xiaomi 11");
+            mobilePage.inputNameSearch("Смартфон Xiaomi 11");
             $(AppiumBy.id("ru.citilink:id/textViewSearchProductName"))
                     .click();
             $(AppiumBy.id("ru.citilink:id/buttonProductAddToCart")).click();
-//            sleep(2000);
         });
 
         step("Verify to add product", () -> {
