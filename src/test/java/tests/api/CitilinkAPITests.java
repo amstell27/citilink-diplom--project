@@ -66,7 +66,7 @@ public class CitilinkAPITests {
                 .get("https://www.citilink.ru/basket/add/product/" + parent_id + "/?amount=" + amount + "&parent_id=" + parent_id + "&_=" + token)
                 .then()
                 .statusCode(200)
-                .body("storage.cart.list." + parent_id + ".amount", greaterThan(5));
+                .body("storage.cart.list." + parent_id + ".amount", is(5));
     }
 
     @Test

@@ -47,6 +47,7 @@ public class MobilePages {
 
     public MobilePages setCategory(String category) {
         $(AppiumBy.id("ru.citilink:id/recyclerViewMainCategories"))
+                .$(AppiumBy.id("ru.citilink:id/cardViewMainCategoryItem"))
                 .$(AppiumBy.id("ru.citilink:id/textViewMainCategoryTitle"))
                 .shouldHave(text(category)).click();
         return this;

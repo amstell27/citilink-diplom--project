@@ -2,7 +2,7 @@ package config;
 
 import org.aeonbits.owner.Config;
 
-@Config.Sources({"classpath:properties/credential.properties"})
+@Config.Sources({"classpath:properties/credentials.properties"})
 public interface WebDriverConfig extends Config {
 
     @Key("remote")
@@ -14,6 +14,5 @@ public interface WebDriverConfig extends Config {
 
     @Key("password")
     String password();
-
 
 }

@@ -2,13 +2,10 @@ package drivers;
 
 import com.codeborne.selenide.Configuration;
 
-import config.WebDriverConfig;
-import org.aeonbits.owner.ConfigFactory;
+import config.Credentials;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
 public class DriverConfigUI {
-
-    public static WebDriverConfig webConfig = ConfigFactory.create(WebDriverConfig.class, System.getProperties());
 
     public static void configure() {
 
@@ -19,17 +16,16 @@ public class DriverConfigUI {
         Configuration.pageLoadTimeout = 80000;
         DesiredCapabilities capabilities = new DesiredCapabilities();
 
-        if (isRemoteWebDriver()) {
+        if (Credentials.isRemoteWebDriver()) {
+            String user = Credentials.config.user();
+            String password = Credentials.config.password();
+            String remote = Credentials.config.remote();
             capabilities.setCapability("enableVNC", true);
             capabilities.setCapability("enableVideo", true);
-            Configuration.remote = "https://" + webConfig.user() + ":" + webConfig.password() + "@" + webConfig.remote();
+            Configuration.remote = "https://" + user + ":" + password + "@" + remote;
         }
         Configuration.browserCapabilities = capabilities;
 
-    }
-
-    public static boolean isRemoteWebDriver() {
-        return !webConfig.remote().equals("");
     }
 
 }

@@ -49,7 +49,7 @@ public class AndroidSelenideTests extends TestBaseMobile {
     }
 
     @DisplayName("Проверка выбора категории")
-    @ValueSource(strings = {"Смартфоны и гаджеты", "Ноутбуки и компьютеры"})
+    @ValueSource(strings = {"Смартфоны и гаджеты"})
     @ParameterizedTest(name = "\"{0}\"")
     void catalogTest(String category) {
         sleep(2000);

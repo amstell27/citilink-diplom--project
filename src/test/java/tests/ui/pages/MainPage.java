@@ -35,6 +35,7 @@ public class MainPage {
     }
 
     public MainPage checkRegion(String region) {
+        sleep(2000);
         cityHeader.shouldHave(text(region));
         return this;
     }
