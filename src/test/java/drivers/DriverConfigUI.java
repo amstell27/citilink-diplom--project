@@ -16,6 +16,7 @@ public class DriverConfigUI {
         Configuration.browser = System.getProperty("browser", "chrome");
         Configuration.browserVersion = System.getProperty("browserVersion", "99.0");
         Configuration.browserSize = System.getProperty("size", "1920x1080");
+        Configuration.pageLoadTimeout = 80000;
         DesiredCapabilities capabilities = new DesiredCapabilities();
 
         if (isRemoteWebDriver()) {
