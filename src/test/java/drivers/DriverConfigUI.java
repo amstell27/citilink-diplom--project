@@ -12,23 +12,23 @@ public class DriverConfigUI {
 
     public static void configure() {
 
-        Configuration.browser = webConfig.browserName();
-        Configuration.browserVersion = webConfig.browserVersion();
-        Configuration.baseUrl = webConfig.getBaseUrl();
-        Configuration.browserSize = "1920x1080";
+        Configuration.baseUrl = "https://citilink.ru";
+        Configuration.browser = System.getProperty("browser", "chrome");
+        Configuration.browserVersion = System.getProperty("browserVersion", "99.0");
+        Configuration.browserSize = System.getProperty("size", "1920x1080");
         DesiredCapabilities capabilities = new DesiredCapabilities();
 
         if (isRemoteWebDriver()) {
             capabilities.setCapability("enableVNC", true);
             capabilities.setCapability("enableVideo", true);
-            Configuration.remote = webConfig.remoteUrl();
+            Configuration.remote = "https://" + webConfig.user() + ":" + webConfig.password() + "@" + webConfig.remote();
         }
         Configuration.browserCapabilities = capabilities;
 
     }
 
     public static boolean isRemoteWebDriver() {
-        return !webConfig.remoteUrl().equals("");
+        return !webConfig.remote().equals("");
     }
 
 }

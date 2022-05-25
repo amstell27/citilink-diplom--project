@@ -1,38 +1,33 @@
 package tests.ui;
 
 import org.junit.jupiter.api.DisplayName;
-
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
-import tests.ui.pages.StartPage;
+import tests.ui.pages.HitsPage;
+import tests.ui.pages.MainPage;
+import tests.ui.pages.RegionPage;
+import tests.ui.pages.SearchPage;
 
 import static io.qameta.allure.Allure.step;
 
 @Tag("UI")
 public class CitilinkUITests extends TestBaseUI {
 
-    StartPage startPage = new StartPage();
-    String category = "Смартфоны";
-
-    @DisplayName("Проверка корректного определения региона")
+    @DisplayName("Проверка выбора региона")
     @ValueSource(strings = {"Казань", "Санкт-Петербург", "Саров"})
     @ParameterizedTest(name = "\"{0}\"")
     void regionTest(String region) {
 
-        step("Открываем основную страницу", () -> {
-            startPage.openPage();
-        });
+        step("Открываем основную страницу", () -> mainPage.openPage());
         step("Ввод региона", () -> {
-            startPage.setRegion(region);
+            mainPage.openThePageRegion();
+            regionPage.inputRegion(region);
+            regionPage.choiceRegion(region);
         });
-        step("Обновление страницы", () -> {
-            startPage.refreshPage();
-        });
-        step("Проверка региона", () -> {
-            startPage.checkRegion(region);
-        });
+        step("Обновление страницы", () -> mainPage.refreshPage());
+        step("Проверка региона", () -> mainPage.checkRegion(region));
     }
 
     @DisplayName("Проверка отображения данных, введенных в поиске")
@@ -40,25 +35,20 @@ public class CitilinkUITests extends TestBaseUI {
     @ParameterizedTest(name = "\"{0}\"")
     void searchTest(String value) {
 
-        step("Открываем основную страницу", () -> {
-            startPage.openPage();
-        });
-        step("Проверка поиска", () -> {
-            startPage.checkSearch(value);
-        });
+        step("Открываем основную страницу", () -> mainPage.openPage());
+        step("Ввод продукта", () -> mainPage.choiceInSearch(value));
+        step("Проверка поиска", () -> searchPage.checkSearch(value));
     }
 
     @Test
     @DisplayName("Проверка раздела <Популярные категории>")
     void checkPopularCategory() {
 
-        step("Открываем основную страницу", () -> {
-            startPage.openPage();
-        });
+        step("Открываем основную страницу", () -> mainPage.openPage());
         step("Проверяем раздел <Популярные категории>", () -> {
-            startPage.checkPopularCategory(category);
+            mainPage.clickPopularCategory();
+            mainPage.checkPopularCategory("Смартфоны");
         });
-
     }
 
     @DisplayName("Проверка отображения введенных сведений в разделе <Каталог товаров> ")
@@ -66,25 +56,22 @@ public class CitilinkUITests extends TestBaseUI {
     @ParameterizedTest(name = "\"{0}\"")
     void checkCatalog(String categoryOfCatalog) {
 
-        step("Открываем основную страницу", () -> {
-            startPage.openPage();
-        });
+        step("Открываем основную страницу", () -> mainPage.openPage());
         step("Проверка раздела <Каталог товаров>", () -> {
-            startPage.checkCatalog(categoryOfCatalog);
+            mainPage.openCatalog();
+            mainPage.choiseItem(categoryOfCatalog);
+            mainPage.checkItem(categoryOfCatalog);
         });
-
     }
 
     @Test
     @DisplayName("Проверка раздела <Хиты>")
     void checkChapterOfHits() {
 
-        step("Открываем основную страницу", () -> {
-            startPage.openPage();
-        });
-
+        step("Открываем основную страницу", () -> mainPage.openPage());
         step("Проверка раздела <Хиты>", () -> {
-            startPage.checkCatalogHits();
+            mainPage.checkCatalogHits();
+            hitPage.topProduct();
         });
     }
 

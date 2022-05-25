@@ -4,7 +4,6 @@ import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.Selenide;
 
 import config.MobileDriverConfig;
-import config.WebDriverConfig;
 import drivers.EmulatorMobileDriver;
 import drivers.RealMobileDriver;
 import helpers.Attach;
@@ -27,10 +26,11 @@ public class TestBaseMobile {
         addListener("AllureSelenide", new AllureSelenide());
 
         switch (mobileConfig.mobile()) {
-            case "real": Configuration.browser = RealMobileDriver.class.getName();
-            case "emulator": Configuration.browser = EmulatorMobileDriver.class.getName();
+            case "real":
+                Configuration.browser = RealMobileDriver.class.getName();
+            case "emulator":
+                Configuration.browser = EmulatorMobileDriver.class.getName();
         }
-
         Configuration.browserSize = null;
     }
 

@@ -54,9 +54,12 @@ public class RealMobileDriver implements WebDriverProvider {
 
     private File getApp() {
 
-        File app = new File(mobileConfig.appPath());
+        String appPath = "src/test/resources/apk/сitilink-1.5.0.apk";
+        String appUrl = "https://softdaily.ru/download/c/Citilink-1.5.0.apk";
+
+        File app = new File(appPath);
         if (!app.exists()) {
-            try (InputStream in = new URL(mobileConfig.appUrl()).openStream()) {
+            try (InputStream in = new URL(appUrl).openStream()) {
                 copyInputStreamToFile(in, app);
             }
             catch (IOException e) {
