@@ -19,7 +19,7 @@ public class AndroidSelenideTests extends TestBaseMobile {
     MobilePages mobilePage = new MobilePages();
 
     @DisplayName("Проверка выбора региона")
-    @ValueSource(strings = {"Казань", "Санкт-Петербург", "Саров"})
+    @ValueSource(strings = {"Казань", "Санкт-Петербург"})
     @ParameterizedTest(name = "\"{0}\"")
     void setAndCheckRegion(String region) {
 

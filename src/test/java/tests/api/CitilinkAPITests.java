@@ -1,12 +1,12 @@
 package tests.api;
 
+import io.restassured.http.Cookies;
 import org.hamcrest.Matchers;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
 import static io.restassured.RestAssured.given;
-import static org.hamcrest.Matchers.greaterThan;
 import static org.hamcrest.Matchers.is;
 
 @Tag("API")
@@ -34,39 +34,33 @@ public class CitilinkAPITests {
     @Test
     @DisplayName("Check to add the product in the basket")
     void getProductBusketTest() {
-        String amount = "1",
-                parent_id = "420251",
-                token = "1652783436497";
+//        String amount = "1",
+//                parent_id = "420251",
+//                token = "1652783436497";
         given()
                 .when()
-                .post("https://www.citilink.ru/basket/add/product/" + parent_id + "/?amount=" + amount + "&parent_id=" + parent_id + "&_=" + token)
+                .post("https://www.citilink.ru/basket/add/product/420251/?amount=1&parent_id=420251&_=1652783436497")
                 .then()
                 .statusCode(200)
-                .body("storage.cart.list." + parent_id + ".amount", is(1));
+                .body("storage.cart.list.420251.amount", is(1));
     }
 
     @Test
     @DisplayName("Check to add the product in the basket with cookie")
     void addProductBusketTest() {
 
-//    Cookies authCookie = given()
-//            .when()
-//            .get("https://www.citilink.ru/basket/add/product/420251/?amount=1&parent_id=420251")
-//            .then()
-//            .log().body()
-//            .log().cookies()
-//            .extract().detailedCookies();
-        String amount = "5",
-                parent_id = "420251",
-                token = "1652783436497",
-                authCookie = "_tuid=4501b28718a8c0feb106d36bbbca3d3ac0137fc1";
+    Cookies authCookie = given()
+            .when()
+            .get("https://www.citilink.ru/basket/add/product/420251/?amount=1&parent_id=420251")
+            .then()
+            .extract().detailedCookies();
         given()
-                .cookie(authCookie)
+                .cookie(authCookie.toString())
                 .when()
-                .get("https://www.citilink.ru/basket/add/product/" + parent_id + "/?amount=" + amount + "&parent_id=" + parent_id + "&_=" + token)
+                .get("https://www.citilink.ru/basket/add/product/420251/?amount=5&parent_id=420251&_=1652783436497")
                 .then()
                 .statusCode(200)
-                .body("storage.cart.list." + parent_id + ".amount", is(5));
+                .body("storage.cart.list.420251.amount", is(5));
     }
 
     @Test

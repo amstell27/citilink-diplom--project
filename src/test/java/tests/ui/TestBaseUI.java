@@ -29,7 +29,7 @@ public class TestBaseUI {
     }
 
     @BeforeEach
-    void openLabirint() {
+    void openCitilink() {
         step("open citilink", () -> {
             open("https://www.citilink.ru/");
         });

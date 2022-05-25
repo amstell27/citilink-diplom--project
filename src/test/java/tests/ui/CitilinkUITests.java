@@ -5,18 +5,13 @@ import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
-import tests.ui.pages.HitsPage;
-import tests.ui.pages.MainPage;
-import tests.ui.pages.RegionPage;
-import tests.ui.pages.SearchPage;
-
 import static io.qameta.allure.Allure.step;
 
 @Tag("UI")
 public class CitilinkUITests extends TestBaseUI {
 
     @DisplayName("Проверка выбора региона")
-    @ValueSource(strings = {"Казань", "Санкт-Петербург", "Саров"})
+    @ValueSource(strings = {"Новосибирск", "Санкт-Петербург"})
     @ParameterizedTest(name = "\"{0}\"")
     void regionTest(String region) {
 
