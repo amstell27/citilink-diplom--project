@@ -49,8 +49,6 @@ gradle clean test
 ```
 clean
 test
--Dremote=${REMOTE}
--Dbrowser=${BROWSER}
 ```
 
 ## :open_book: Allure отчет
@@ -62,11 +60,6 @@ test
 - ### Страница с проведенными тестами
 <p align="center">
 <img title="Allure Test Page" src="images/screenshots/allure-test-page.png">
-</p>
-
-## :hammer: Allure Test Ops отчет
-<p align="center">
-<img title="Allure Test Ops Launch" src="images/screenshots/allure-test-ops-page.png">
 </p>
 
 ## :robot: Отчет в Telegram
