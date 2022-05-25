@@ -11,7 +11,7 @@ import tests.ui.pages.StartPage;
 import static io.qameta.allure.Allure.step;
 
 @Tag("UI")
-public class CitilinkUITests extends TestBase {
+public class CitilinkUITests extends TestBaseUI {
 
     StartPage startPage = new StartPage();
     String category = "Смартфоны";

@@ -36,7 +36,6 @@ public class CitilinkAPITests {
         String amount = "1",
                 parent_id = "420251",
                 token = "1652783436497";
-
         given()
                 .when()
                 .get("https://www.citilink.ru/basket/add/product/" + parent_id + "/?amount=" + amount + "&parent_id=" + parent_id + "&_=" + token)

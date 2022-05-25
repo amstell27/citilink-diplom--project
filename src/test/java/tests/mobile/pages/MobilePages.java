@@ -17,7 +17,6 @@ public class MobilePages {
         $(AppiumBy.id("ru.citilink:id/search_src_text")).setValue(region);
         $(AppiumBy.id("ru.citilink:id/textViewCityName")).click();
         return this;
-
     }
 
     public MobilePages checkRegion(String region) {
@@ -40,5 +39,46 @@ public class MobilePages {
         $(AppiumBy.id("ru.citilink:id/textViewProductsListTitle")).shouldHave(text(value));
         return this;
     }
+
+    public MobilePages openCatalog() {
+        $(AppiumBy.accessibilityId("Каталог")).click();
+        return this;
+    }
+
+    public MobilePages setCategory(String category) {
+        $(AppiumBy.id("ru.citilink:id/recyclerViewMainCategories"))
+                .$(AppiumBy.id("ru.citilink:id/textViewMainCategoryTitle"))
+                .shouldHave(text(category)).click();
+        return this;
+    }
+
+    public MobilePages checkCategory(String category) {
+        $(AppiumBy.id("ru.citilink:id/textViewCustomTitle")).shouldHave(text(category));
+        return this;
+    }
+
+    public MobilePages choiceProduct() {
+        $(AppiumBy.id("ru.citilink:id/textViewSearchProductName")).click();
+        return this;
+    }
+
+    public MobilePages addToCart() {
+        $(AppiumBy.id("ru.citilink:id/buttonProductAddToCart")).click();
+        return this;
+    }
+
+    public MobilePages openTheCart() {
+        $(AppiumBy.id("ru.citilink:id/ordering_graph")).click();
+        return this;
+    }
+
+    public MobilePages checkToAddProduct(String product) {
+        $(AppiumBy.id("ru.citilink:id/constraintLayoutCartProduct"))
+                .$(AppiumBy.id("ru.citilink:id/textViewCartProductName"))
+                .shouldHave(text(product));
+        return this;
+    }
+
+
 }
 
