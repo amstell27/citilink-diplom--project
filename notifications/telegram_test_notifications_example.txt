@@ -13,7 +13,7 @@ java \
 "-Denv=PROD" \
 "-DreportLink=qa.guru/" \
 "-Dcomm=Any comment here" \
-"-Dconfig.file=notifications/telegram_config_personal.json" \
+"-Dconfig.file=notifications/telegram_config.json" \
 -jar notifications/allure-notifications-3.1.2.jar
 
 // Jenkins

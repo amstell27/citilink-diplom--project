@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
 import static io.restassured.RestAssured.given;
+import static org.hamcrest.Matchers.greaterThan;
 import static org.hamcrest.Matchers.is;
 
 @Tag("API")
@@ -34,9 +35,7 @@ public class CitilinkAPITests {
     @Test
     @DisplayName("Check to add the product in the basket")
     void getProductBusketTest() {
-//        String amount = "1",
-//                parent_id = "420251",
-//                token = "1652783436497";
+
         given()
                 .when()
                 .post("https://www.citilink.ru/basket/add/product/420251/?amount=1&parent_id=420251&_=1652783436497")
@@ -49,18 +48,18 @@ public class CitilinkAPITests {
     @DisplayName("Check to add the product in the basket with cookie")
     void addProductBusketTest() {
 
-    Cookies authCookie = given()
-            .when()
-            .get("https://www.citilink.ru/basket/add/product/420251/?amount=1&parent_id=420251")
-            .then()
-            .extract().detailedCookies();
+        Cookies authCookie = given()
+                .when()
+                .get("https://www.citilink.ru/basket/add/product/420251/?amount=1&parent_id=420251")
+                .then()
+                .extract().detailedCookies();
         given()
                 .cookie(authCookie.toString())
                 .when()
                 .get("https://www.citilink.ru/basket/add/product/420251/?amount=5&parent_id=420251&_=1652783436497")
                 .then()
                 .statusCode(200)
-                .body("storage.cart.list.420251.amount", is(5));
+                .body("storage.cart.list.420251.amount", greaterThan(5));
     }
 
     @Test

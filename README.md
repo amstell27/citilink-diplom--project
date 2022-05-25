@@ -9,7 +9,7 @@
 - <a href="#arrow_forward-запуск-из-терминала">Запуск из терминала</a>
 - <a href="#open_book-allure-отчет">Allure отчет</a>
 - <a href="#robot-отчет-в-telegram">Отчет в Telegram</a>
-- <a href="#film_projector-видео-примеры-прохождения-тестов">Видео примеры прохождения тестов</a>
+- <a href="#film_projector-видео-пример-прохождения-тестов">Видео пример прохождения тестов</a>
 
 ## :computer: Технологии и инструменты
 <p align="center">
@@ -34,7 +34,7 @@
 
 
 ## :electric_plug: Сборка в Jenkins
-### <a target="_blank" href="https://jenkins.autotests.cloud/job/irinaleonteva_qaguru_11_13_jenkins/">Сборка в Jenkins</a>
+### <a target="_blank" href="https://jenkins.autotests.cloud/job/С11-Amstell27-Diplom-project/">Сборка в Jenkins</a>
 <p align="center">
 <img title="Jenkins Dashboard" src="images/screenshots/jenkins-dashboard.png">
 </p>  
@@ -64,11 +64,11 @@ test
 
 ## :robot: Отчет в Telegram
 <p align="center">
-<img title="Telegram notification message" src="images/screenshots/telegram-bot.png">
+<img title="Telegram notification message" src="images/screenshots/telegram-bot_local.png">
 </p>
 
 ## :film_projector: Видео примеры прохождения тестов
 > К каждому тесту в отчете прилагается видео. Одно из таких видео представлено ниже.
 <p align="center">
-  <img title="Selenoid Video" src="images/gif/test-run.mp4">
+  <img title="Selenoid Video" src="images/gif/test-run.gif">
 </p>
