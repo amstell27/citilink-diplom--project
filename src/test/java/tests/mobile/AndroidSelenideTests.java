@@ -7,8 +7,6 @@ import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
-import tests.mobile.pages.MobilePages;
-
 
 import static com.codeborne.selenide.Selenide.*;
 import static io.qameta.allure.Allure.step;
@@ -16,17 +14,15 @@ import static io.qameta.allure.Allure.step;
 @Tag("Mobile")
 public class AndroidSelenideTests extends TestBaseMobile {
 
-    MobilePages mobilePage = new MobilePages();
-
     @DisplayName("Проверка выбора региона")
     @ValueSource(strings = {"Казань", "Санкт-Петербург"})
     @ParameterizedTest(name = "\"{0}\"")
     void setAndCheckRegion(String region) {
 
         sleep(2000);
-        step("Skip onboarding", Selenide::back);
-        step("Set the city", () -> mobilePage.setRegion(region));
-        step("Verify choice region", () -> mobilePage.checkRegion(region));
+        step("Пропуск баннера", Selenide::back);
+        step("Выбор региона", () -> mobilePage.setRegion(region));
+        step("Проверка выбора региона", () -> mobilePage.checkRegion(region));
     }
 
     @DisplayName("Проверка выбора региона")
@@ -34,12 +30,12 @@ public class AndroidSelenideTests extends TestBaseMobile {
     @ParameterizedTest(name = "\"{0}\"")
     void searchTest(String value) {
         sleep(2000);
-        step("Skip onboarding", Selenide::back);
-        step("Set the search", () -> {
+        step("Пропуск баннера", Selenide::back);
+        step("Поиск продукта", () -> {
             mobilePage.inputNameSearch(value)
                     .clickFoundCategory();
         });
-        step("Verify content found", () -> mobilePage.checkSearch(value));
+        step("Проверка найденного продукта", () -> mobilePage.checkSearch(value));
     }
 
     @DisplayName("Проверка выбора категории")
@@ -48,25 +44,26 @@ public class AndroidSelenideTests extends TestBaseMobile {
     void catalogTest(String category) {
 
         sleep(2000);
-        step("Skip onboarding", Selenide::back);
-        step("Set the Catalog", () -> {
+        step("Пропуск баннера", Selenide::back);
+        step("Переход в каталог", () -> {
             mobilePage.openCatalog()
                     .setCategory(category);
         });
-        step("Verify content found", () -> mobilePage.checkCategory(category));
+        step("Проверка выбора категории", () -> mobilePage.checkCategory(category));
     }
 
     @Test
+    @DisplayName("Проверка добавления товара в корзину")
     void addToCartTest() {
 
         sleep(2000);
-        step("Skip onboarding", Selenide::back);
-        step("add product to basket", () -> {
+        step("Пропуск баннера", Selenide::back);
+        step("Добавление в корзину", () -> {
             mobilePage.inputNameSearch("Смартфон Xiaomi 11")
                     .choiceProduct()
                     .addToCart();
         });
-        step("Verify to add product", () -> {
+        step("Проверка добавления товара", () -> {
             mobilePage.openTheCart()
                     .checkToAddProduct("Смартфон Xiaomi");
         });

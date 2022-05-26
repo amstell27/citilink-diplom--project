@@ -12,6 +12,7 @@ import org.aeonbits.owner.ConfigFactory;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
+import tests.mobile.pages.MobilePages;
 
 import static com.codeborne.selenide.Selenide.open;
 import static com.codeborne.selenide.logevents.SelenideLogger.addListener;
@@ -20,6 +21,8 @@ import static io.qameta.allure.Allure.step;
 public class TestBaseMobile {
 
     public static MobileDriverConfig mobileConfig = ConfigFactory.create(MobileDriverConfig.class, System.getProperties());
+
+    MobilePages mobilePage = new MobilePages();
 
     @BeforeAll
     public static void setup() {
