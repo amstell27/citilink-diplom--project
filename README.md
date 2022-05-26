@@ -42,13 +42,16 @@
 ## :arrow_forward: Запуск из терминала
 Локальный запуск:
 ```
-gradle clean test
+gradle clean test -Dmobile={emulator or real}
 ```
 
 Удаленный запуск:
 ```
 clean
-test
+${TASK} (test-все тесты, ui-tests - только ui)
+-Dbrowser=${BROWSER} - браузер
+-Dsize=${BROWSER_SIZE} - разрешение
+-DbrowserVersion=${BROWSER_VERSION} - версия браузера
 ```
 
 ## :open_book: Allure отчет
