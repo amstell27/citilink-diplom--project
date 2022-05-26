@@ -23,6 +23,7 @@ public class TestBaseMobile {
 
     @BeforeAll
     public static void setup() {
+
         addListener("AllureSelenide", new AllureSelenide());
 
         switch (mobileConfig.mobile()) {

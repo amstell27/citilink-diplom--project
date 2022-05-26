@@ -25,12 +25,8 @@ public class AndroidSelenideTests extends TestBaseMobile {
 
         sleep(2000);
         step("Skip onboarding", Selenide::back);
-        step("Set the city", () -> {
-            mobilePage.setRegion(region);
-        });
-        step("Verify choice region", () -> {
-            mobilePage.checkRegion(region);
-        });
+        step("Set the city", () -> mobilePage.setRegion(region));
+        step("Verify choice region", () -> mobilePage.checkRegion(region));
     }
 
     @DisplayName("Проверка выбора региона")
@@ -43,28 +39,26 @@ public class AndroidSelenideTests extends TestBaseMobile {
             mobilePage.inputNameSearch(value)
                     .clickFoundCategory();
         });
-        step("Verify content found", () -> {
-            mobilePage.checkSearch(value);
-        });
+        step("Verify content found", () -> mobilePage.checkSearch(value));
     }
 
     @DisplayName("Проверка выбора категории")
     @ValueSource(strings = {"Смартфоны и гаджеты"})
     @ParameterizedTest(name = "\"{0}\"")
     void catalogTest(String category) {
+
         sleep(2000);
         step("Skip onboarding", Selenide::back);
         step("Set the Catalog", () -> {
             mobilePage.openCatalog()
                     .setCategory(category);
         });
-        step("Verify content found", () -> {
-            mobilePage.checkCategory(category);
-        });
+        step("Verify content found", () -> mobilePage.checkCategory(category));
     }
 
     @Test
     void addToCartTest() {
+
         sleep(2000);
         step("Skip onboarding", Selenide::back);
         step("add product to basket", () -> {

@@ -9,7 +9,7 @@ public class SearchPage {
 
     private final SelenideElement
 
-    checkFormSearch = $("[class='Subcategory__title-container']");
+            checkFormSearch = $("[class='Subcategory__title-container']");
 
     public SearchPage checkSearch(String value) {
         checkFormSearch.shouldHave(text(value));

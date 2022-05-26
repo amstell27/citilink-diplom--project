@@ -36,7 +36,7 @@ public class TestBaseUI {
     }
 
     @AfterEach
-    void addAttachements(){
+    void addAttachements() {
         Attach.screenshotAs("Last screenshot");
         Attach.pageSource();
         Attach.browserConsoleLogs();

@@ -3,7 +3,7 @@ package config;
 import org.aeonbits.owner.Config;
 
 @Config.Sources({"classpath:properties/${mobile}.properties"})
-public interface MobileDriverConfig extends Config{
+public interface MobileDriverConfig extends Config {
 
     @Key("platformName")
     String platformName();

@@ -16,7 +16,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 
 import static org.apache.commons.io.FileUtils.copyInputStreamToFile;
-import static tests.mobile.TestBaseMobile.mobileConfig;
+
 
 
 public class RealMobileDriver implements WebDriverProvider {
@@ -25,6 +25,7 @@ public class RealMobileDriver implements WebDriverProvider {
 
     @Override
     public WebDriver createDriver(Capabilities capabilities) {
+
         File app = getApp();
 
         UiAutomator2Options options = new UiAutomator2Options();
@@ -38,8 +39,6 @@ public class RealMobileDriver implements WebDriverProvider {
         options.setLanguage("ru");
         options.setAppPackage(mobileConfig.appPackage());
         options.setAppActivity(mobileConfig.appActivity());
-
-
 
         return new AndroidDriver(getAppiumServerUrl(), options);
     }
@@ -61,12 +60,10 @@ public class RealMobileDriver implements WebDriverProvider {
         if (!app.exists()) {
             try (InputStream in = new URL(appUrl).openStream()) {
                 copyInputStreamToFile(in, app);
-            }
-            catch (IOException e) {
+            } catch (IOException e) {
                 throw new AssertionError("Failed to download apk", e);
             }
         }
         return app;
     }
-
 }
