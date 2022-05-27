@@ -9,6 +9,7 @@ import org.junit.jupiter.api.Test;
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.is;
 import static specs.SpecsProduct.requestProduct;
+import static specs.SpecsProduct.responseSpecProduct;
 import static specs.SpecsService.request;
 import static specs.SpecsService.responseSpecService;
 
@@ -21,7 +22,6 @@ public class CitilinkAPITests {
 
         String Authcookie = "_tuid=262f589b2fab382ec89a17ff82a0aa33e97cffa7; userId=IL05880548; clientId=43253941.1640235144;",
                 data = "productId=1617484&serviceId=J5437&serviceType=cardifService&serviceQty=1";
-
         given()
                 .spec(request)
                 .cookie(Authcookie)
@@ -31,7 +31,6 @@ public class CitilinkAPITests {
                 .then()
                 .spec(responseSpecService)
                 .body("storage.cart.list.1617484.subItems.J5437.amount", is(1));
-
     }
 
 
@@ -49,10 +48,9 @@ public class CitilinkAPITests {
                 .spec(requestProduct)
                 .cookie(authCookie.toString())
                 .when()
-                .post("420251/?amount=5&parent_id=420251&")
+                .post("420251/?amount=5&parent_id=420251")
                 .then()
-                .log().body()
-                .statusCode(200)
+                .spec(responseSpecProduct)
                 .body("storage.cart.list.420251.amount", is(5));
     }
 
@@ -66,7 +64,7 @@ public class CitilinkAPITests {
         Cookies authCookie = given()
                 .spec(requestProduct)
                 .when()
-                .get("/420251/?amount=1&parent_id=420251&_=1652783436497")
+                .get(parent_id + "/?amount=" + amount + "&parent_id=" + parent_id)
                 .then()
                 .extract().detailedCookies();
 
@@ -74,9 +72,9 @@ public class CitilinkAPITests {
                 .spec(requestProduct)
                 .cookie(authCookie.toString())
                 .when()
-                .get(parent_id + "/?amount=" + amount + "&parent_id=" + parent_id)
+                .post(parent_id + "/?amount=" + amount + "&parent_id=" + parent_id)
                 .then()
-                .statusCode(200)
+                .spec(responseSpecProduct)
                 .body("storage.cart.list." + parent_id + ".amount", Matchers.not(100500));
     }
 }
