@@ -41,10 +41,10 @@ public class CitilinkAPITests {
 
 
     @Test
-    @DisplayName("Проверка на добавление в корзину")
+    @DisplayName("Проверка на добавление товара в корзину")
     void addProductBusketTest() {
 
-        step("Отправляем запрос на добавление услуги");
+        step("Отправляем запрос на добавление товара");
         Cookies authCookie = given()
                 .spec(requestProduct)
                 .when()
@@ -61,7 +61,7 @@ public class CitilinkAPITests {
                         .spec(responseSpecProduct)
                         .extract().as(StorageModel.class);
 
-        step("Проверяем добавление услуги в корзину");
+        step("Проверяем добавление товара в корзину");
         assertEquals(5, response.getStorage().getCart().getList().getProductInformation().getAmount());
     }
 
