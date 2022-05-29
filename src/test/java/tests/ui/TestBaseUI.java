@@ -1,7 +1,7 @@
 package tests.ui;
 
 import com.codeborne.selenide.logevents.SelenideLogger;
-import drivers.WebDriver;
+import drivers.DriverConfigUI;
 import helpers.Attach;
 import io.qameta.allure.selenide.AllureSelenide;
 import org.junit.jupiter.api.AfterEach;
@@ -26,7 +26,7 @@ public class TestBaseUI {
     @BeforeAll
     static void setUp() {
         SelenideLogger.addListener("AllureSelenide", new AllureSelenide());
-        WebDriver.configure();
+        DriverConfigUI.configure();
     }
 
     @BeforeEach

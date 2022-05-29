@@ -5,7 +5,7 @@ import com.codeborne.selenide.Configuration;
 import config.Credentials;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
-public class WebDriver {
+public class DriverConfigUI {
 
     public static void configure() {
 
