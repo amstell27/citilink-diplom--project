@@ -5,7 +5,7 @@ import com.codeborne.selenide.Configuration;
 import config.Credentials;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
-public class DriverConfigUI {
+public class WebDriver {
 
     public static void configure() {
 
@@ -24,7 +24,6 @@ public class DriverConfigUI {
             Configuration.remote = "https://" + user + ":" + password + "@" + remote;
         }
         Configuration.browserCapabilities = capabilities;
-
     }
 
 }

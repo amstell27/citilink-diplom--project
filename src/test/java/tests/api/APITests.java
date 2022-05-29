@@ -15,8 +15,8 @@ import static specs.SpecsProduct.responseSpecProduct;
 import static specs.SpecsService.request;
 import static specs.SpecsService.responseSpecService;
 
-@Tag("API")
-public class CitilinkAPITests {
+@Tag("api")
+public class APITests {
 
     @Test
     @DisplayName("Проверка на добавление услуг в корзину")

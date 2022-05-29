@@ -2,7 +2,7 @@ package config;
 
 import org.aeonbits.owner.Config;
 
-@Config.Sources({"classpath:properties/${mobile}.properties"})
+@Config.Sources({"classpath:config/${mobile}.properties"})
 public interface MobileDriverConfig extends Config {
 
     @Key("platformName")
@@ -20,7 +20,13 @@ public interface MobileDriverConfig extends Config {
     @Key("appActivity")
     String appActivity();
 
-    @Key("mobile")
-    String mobile();
+    @Key("appPath")
+    String appPath();
+
+    @Key("appUrl")
+    String appUrl();
+
+    @Key("appiumUrl")
+    String appiumUrl();
 
 }

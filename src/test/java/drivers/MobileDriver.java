@@ -17,15 +17,12 @@ import java.net.URL;
 
 import static org.apache.commons.io.FileUtils.copyInputStreamToFile;
 
-
-
-public class RealMobileDriver implements WebDriverProvider {
+public class MobileDriver implements WebDriverProvider {
 
     private static MobileDriverConfig mobileConfig = ConfigFactory.create(MobileDriverConfig.class, System.getProperties());
 
     @Override
     public WebDriver createDriver(Capabilities capabilities) {
-
         File app = getApp();
 
         UiAutomator2Options options = new UiAutomator2Options();
@@ -45,16 +42,15 @@ public class RealMobileDriver implements WebDriverProvider {
 
     public static URL getAppiumServerUrl() {
         try {
-            return new URL("http://localhost:4723/wd/hub");
+            return new URL(mobileConfig.appiumUrl());
         } catch (MalformedURLException e) {
             throw new RuntimeException(e);
         }
     }
 
     private File getApp() {
-
-        String appPath = "src/test/resources/apk/сitilink-1.5.0.apk";
-        String appUrl = "https://softdaily.ru/download/c/Citilink-1.5.0.apk";
+        String appPath = mobileConfig.appPath();
+        String appUrl = mobileConfig.appUrl();
 
         File app = new File(appPath);
         if (!app.exists()) {
@@ -66,4 +62,5 @@ public class RealMobileDriver implements WebDriverProvider {
         }
         return app;
     }
+
 }

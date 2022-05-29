@@ -9,7 +9,6 @@ import static com.codeborne.selenide.Selenide.$;
 public class MainPage {
 
     private final SelenideElement
-
             cityHeader = $("[class='MainHeader__city-block']").$("[class='MainHeader__city']"),
             searchCategory = $("[class='MainHeader__search']").$(by("name", "text")),
             popularCategory = $("[class='dy--PopularCategoriesBox__header']"),
@@ -44,7 +43,6 @@ public class MainPage {
         return this;
     }
 
-
     public MainPage clickPopularCategory() {
         popularCategory.click();
         return this;
@@ -73,8 +71,6 @@ public class MainPage {
     public MainPage checkCatalogHits() {
         hits.scrollTo();
         $("[class= 'SectionHead__link SectionHead__link_desktop']").click();
-
         return this;
     }
-
 }

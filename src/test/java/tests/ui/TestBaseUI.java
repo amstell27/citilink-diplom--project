@@ -1,7 +1,7 @@
 package tests.ui;
 
 import com.codeborne.selenide.logevents.SelenideLogger;
-import drivers.DriverConfigUI;
+import drivers.WebDriver;
 import helpers.Attach;
 import io.qameta.allure.selenide.AllureSelenide;
 import org.junit.jupiter.api.AfterEach;
@@ -12,6 +12,7 @@ import tests.ui.pages.MainPage;
 import tests.ui.pages.RegionPage;
 import tests.ui.pages.SearchPage;
 
+import static com.codeborne.selenide.Configuration.baseUrl;
 import static com.codeborne.selenide.Selenide.open;
 import static io.qameta.allure.Allure.step;
 
@@ -25,13 +26,13 @@ public class TestBaseUI {
     @BeforeAll
     static void setUp() {
         SelenideLogger.addListener("AllureSelenide", new AllureSelenide());
-        DriverConfigUI.configure();
+        WebDriver.configure();
     }
 
     @BeforeEach
     void openCitilink() {
         step("open citilink", () -> {
-            open("https://www.citilink.ru/");
+            open(baseUrl);
         });
     }
 

@@ -20,22 +20,22 @@ def allureVersion = "2.17.3",
     jWeaverVersion = "1.9.6",
     restAssuredVersion = "5.0.1",
     appiumVersion = "8.0.0",
-    commonsVersion = "2.11.0"
+    commonsVersion = "2.11.0",
+    jacksonVersion = "2.13.2.2"
 
-allure
-        {
-            adapter {
-                aspectjWeaver.set(true)
-                frameworks {
-                    junit5 {
-                        adapterVersion.set(allureVersion)
-                    }
-                }
-            }
-            report {
-                version.set(allureVersion)
+allure {
+    adapter {
+        aspectjWeaver.set(true)
+        frameworks {
+            junit5 {
+                adapterVersion.set(allureVersion)
             }
         }
+    }
+    report {
+        version.set(allureVersion)
+    }
+}
 
 dependencies {
     testImplementation(
@@ -50,9 +50,8 @@ dependencies {
             "io.appium:java-client:$appiumVersion",
             "org.slf4j:slf4j-simple:$slf4jVersion",
             "commons-io:commons-io:$commonsVersion",
-            "com.fasterxml.jackson.core:jackson-databind:2.13.2.2"
+            "com.fasterxml.jackson.core:jackson-databind:$jacksonVersion"
     )
-
 }
 
 tasks.withType(JavaCompile) {
@@ -73,19 +72,19 @@ tasks.withType(Test) {
 }
 
 task ui_tests(type: Test) {
-    useJUnitPlatform{
-        includeTags "UI"
+    useJUnitPlatform {
+        includeTags "ui"
     }
 }
 
 task api_tests(type: Test) {
-    useJUnitPlatform{
-        includeTags "API"
+    useJUnitPlatform {
+        includeTags "api"
     }
 }
 
 task mobile_tests(type: Test) {
-    useJUnitPlatform{
-        includeTags "Mobile"
+    useJUnitPlatform {
+        includeTags "mobile"
     }
 }

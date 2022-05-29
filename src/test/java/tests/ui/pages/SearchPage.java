@@ -8,7 +8,6 @@ import static com.codeborne.selenide.Selenide.$;
 public class SearchPage {
 
     private final SelenideElement
-
             checkFormSearch = $("[class='Subcategory__title-container']");
 
     public SearchPage checkSearch(String value) {

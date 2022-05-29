@@ -8,14 +8,13 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 import static io.qameta.allure.Allure.step;
 
-@Tag("UI")
-public class CitilinkUITests extends TestBaseUI {
+@Tag("ui")
+public class UITests extends TestBaseUI {
 
     @DisplayName("Проверка выбора региона")
     @ValueSource(strings = {"Новосибирск", "Санкт-Петербург"})
     @ParameterizedTest(name = "\"{0}\"")
     void regionTest(String region) {
-
         step("Открываем основную страницу", () -> mainPage.openPage());
         step("Ввод региона", () -> {
             mainPage.openThePageRegion();
@@ -30,7 +29,6 @@ public class CitilinkUITests extends TestBaseUI {
     @ValueSource(strings = {"Процессоры", "Модули памяти"})
     @ParameterizedTest(name = "\"{0}\"")
     void searchTest(String value) {
-
         step("Открываем основную страницу", () -> mainPage.openPage());
         step("Ввод продукта", () -> mainPage.choiceInSearch(value));
         step("Проверка поиска", () -> searchPage.checkSearch(value));
@@ -39,7 +37,6 @@ public class CitilinkUITests extends TestBaseUI {
     @Test
     @DisplayName("Проверка раздела <Популярные категории>")
     void checkPopularCategory() {
-
         step("Открываем основную страницу", () -> mainPage.openPage());
         step("Проверяем раздел <Популярные категории>", () -> {
             mainPage.clickPopularCategory();
@@ -51,7 +48,6 @@ public class CitilinkUITests extends TestBaseUI {
     @ValueSource(strings = {"Умный дом и системы безопасности", "Автотовары", "Строительство и ремонт"})
     @ParameterizedTest(name = "\"{0}\"")
     void checkCatalog(String categoryOfCatalog) {
-
         step("Открываем основную страницу", () -> mainPage.openPage());
         step("Проверка раздела <Каталог товаров>", () -> {
             mainPage.openCatalog();
@@ -63,7 +59,6 @@ public class CitilinkUITests extends TestBaseUI {
     @Test
     @DisplayName("Проверка раздела <Хиты>")
     void checkChapterOfHits() {
-
         step("Открываем основную страницу", () -> mainPage.openPage());
         step("Проверка раздела <Хиты>", () -> {
             mainPage.checkCatalogHits();
