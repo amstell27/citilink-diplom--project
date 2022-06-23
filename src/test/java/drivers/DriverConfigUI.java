@@ -21,7 +21,8 @@ public class DriverConfigUI {
             String remote = Credentials.config.remote();
             capabilities.setCapability("enableVNC", true);
             capabilities.setCapability("enableVideo", true);
-            Configuration.remote = "https://" + user + ":" + password + "@" + remote;
+//            Configuration.remote = "https://" + user + ":" + password + "@" + remote;
+            Configuration.remote = "http://10.155.56.61:8080/wd/hub";
         }
         Configuration.browserCapabilities = capabilities;
     }
