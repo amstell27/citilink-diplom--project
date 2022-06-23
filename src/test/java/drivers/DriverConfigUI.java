@@ -22,7 +22,7 @@ public class DriverConfigUI {
             capabilities.setCapability("enableVNC", true);
             capabilities.setCapability("enableVideo", true);
 //            Configuration.remote = "https://" + user + ":" + password + "@" + remote;
-            Configuration.remote = "http://10.155.56.61:8080/wd/hub";
+            Configuration.remote = "http://10.155.56.61:4444/wd/hub";
         }
         Configuration.browserCapabilities = capabilities;
     }
