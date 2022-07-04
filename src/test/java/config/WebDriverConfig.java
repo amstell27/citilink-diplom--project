@@ -6,7 +6,7 @@ import org.aeonbits.owner.Config;
 public interface WebDriverConfig extends Config {
 
     @Key("remote")
-    @DefaultValue("http://10.155.56.61:4444/wd/hub/")
+    @DefaultValue("")
     String remote();
 
     @Key("user")
